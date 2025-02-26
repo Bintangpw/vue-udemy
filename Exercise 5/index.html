@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Basics</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="exercise">
+    <!-- 1) Toggle v-if and v-show -->
+    <div>
+      <button @click="isShown = !isShown">Toggle</button>
+      <p>this is v-if</p>
+      <p v-if="isShown">You either see me ...</p>
+      <p v-else>...or me</p>
+      <p>this is v-show</p>
+      <p v-show="isShown">You either see me ...</p>
+      <p v-show="!isShown">...or me</p>
+    </div>
+
+    <!-- 2) Loop through array with index -->
+    <ul>
+      <li v-for="(element, index) in array" :key="index">
+        {{ index }} - {{ element }}
+      </li>
+    </ul>
+
+    <!-- 3) Loop through object key-value pairs -->
+    <ul>
+      <li v-for="(value, key, index) in myObject" :key="key">
+        {{ index }} - {{ key }}: {{ value }}
+      </li>
+    </ul>
+
+    <!-- 4) Loop through object values, and handle nested arrays -->
+    <ul>
+      <li v-for="(value, key) in testData" :key="key">
+        <strong>{{ key }}:</strong>
+        <template v-if="Array.isArray(value)">
+          <ul>
+            <li v-for="element in value" :key="element">{{ element }}</li>
+          </ul>
+        </template>
+        <template v-else>
+          {{ value }}
+        </template>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
